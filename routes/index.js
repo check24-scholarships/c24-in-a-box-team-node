@@ -43,7 +43,7 @@ router.get('/search', async function (req, res, next) {
     user: 'postgres',
     host: '127.0.0.1',
     database: 'cproducts',
-    password: 'postgres',
+    password: 'test',
     port: 5432,
   })
   await client.connect()
