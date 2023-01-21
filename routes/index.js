@@ -49,7 +49,7 @@ router.get('/search', async function (req, res, next) {
     })
     await client.connect()
 
-    const dbRes = await client.query(`SELECT * FROM cproducts WHERE name CONTAINS '${query}';`)
+    const dbRes = await client.query(`SELECT * FROM cproducts WHERE name LIKE '%${query}%';`)
     console.log(dbRes.rows[0].message)
 
     await client.end()
