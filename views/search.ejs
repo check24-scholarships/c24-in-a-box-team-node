@@ -111,7 +111,7 @@
                     <tr>
                         <td><img src="<%= data[count].image %>" /></td>
                         <td><%= data[count].name %></td>
-                        <td><%= data[count].price %></td>
+                        <td>$<%= (data[count].price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
                     </tr>
                 <% } %>
                 </tbody>
