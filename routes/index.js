@@ -51,7 +51,7 @@ router.get('/search', async function (req, res, next) {
 
     const dbRes = await client.query(`SELECT * FROM cproducts WHERE name LIKE '%${query}%';`)
     console.log(dbRes.rows)
-
+    test = dbRes.rows
     await client.end()
   } catch (e) {
     console.log(e)
