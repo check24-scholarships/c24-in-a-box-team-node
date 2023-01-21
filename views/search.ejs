@@ -105,6 +105,7 @@
                     <th scope="col">Bild</th>
                     <th scope="col">Produkt</th>
                     <th scope="col">Preis</th>
+                    <th scope="col">Favourite</th>
                 </tr>
                 </thead>
                 <tbody id="posts">
@@ -157,15 +158,18 @@
             }
         })
 
-        console.log(wishlist)
+        if (typeof wishlist == 'undefined') {
+            document.cookie = `wishlist=[${id}]`
+            return
+        }
 
-        console.log(id)
+        if (wishlist.includes(id)) return;
 
         wishlist.push(id)
 
         console.log("Wish list nach add, ", wishlist)
 
-        document.cookie = `wishlist=${wishlist}`
+        document.cookie = `wishlist=[${wishlist}]`
 
         console.log("added to wishlist")
         console.log("new wishlist, ", document.cookie.split("; "))
