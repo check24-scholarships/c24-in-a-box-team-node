@@ -98,6 +98,7 @@
         </div>
         <div class="results">
             <h3>Ergebnisse</h3>
+            <button onclick="addItemToWishList(1)">Click me</button>
             <table>
                 <thead>
                 <tr>
@@ -112,6 +113,9 @@
                         <td><img src="<%= data[count].image %>" /></td>
                         <td><%= data[count].name %></td>
                         <td>$<%= (data[count].price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                        <td>
+                            <button onclick="addItemToWishList(<%= data[count].id %>)">Add to Wishlist</button>
+                        </td>
                     </tr>
                 <% } %>
                 </tbody>
@@ -120,5 +124,52 @@
     </div>
 </main>
 </body>
+
+<script>
+
+    function getWishList() {
+        let cookies = document.cookie
+        console.log(cookies.split("; "))
+
+        let wishlist
+
+        cookies.split("; ").forEach((value) => {
+            if (value.startsWith("wishlist")) {
+                let splittetVal = value.split("=")
+                wishlist = JSON.parse(splittetVal[1])
+            }
+        })
+
+        return wishlist
+    }
+
+    function addItemToWishList(id) {
+
+        let cookies = document.cookie
+        console.log(cookies.split("; "))
+
+        let wishlist
+
+        cookies.split("; ").forEach((value) => {
+            if (value.startsWith("wishlist")) {
+                let splittetVal = value.split("=")
+                wishlist = JSON.parse(splittetVal[1])
+            }
+        })
+
+        console.log(wishlist)
+
+        console.log(id)
+
+        wishlist.push(id)
+
+        console.log("Wish list nach add, ", wishlist)
+
+        document.cookie = `wishlist=${wishlist}`
+
+        console.log("added to wishlist")
+        console.log("new wishlist, ", document.cookie.split("; "))
+    }
+</script>
 
 </html>
