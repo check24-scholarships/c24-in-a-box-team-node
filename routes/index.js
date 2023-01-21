@@ -41,20 +41,20 @@ router.get('/search', async function (req, res, next) {
 
   try {
     const client = new Client({
-      user: 'postgres',
+      user: 'justin',
       host: '127.0.0.1',
-      database: 'cproducts',
-      password: 'test',
+      database: 'productdatabase',
+      password: 'password',
       port: 5432,
     })
     await client.connect()
 
-    const dbRes = await client.query(`SELECT * FROM products WHERE name CONTAINS '${query}';`)
+    const dbRes = await client.query(`SELECT * FROM cproducts WHERE name CONTAINS '${query}';`)
     console.log(dbRes.rows[0].message)
 
     await client.end()
   } catch (e) {
-    console.log(e.stackTrace)
+    console.log(e)
   }
 
 
