@@ -14,7 +14,7 @@ router.get('/search', async function (req, res, next) {
   const query = req.query['q']
 
   if (query === '' || typeof query == "undefined") {
-    res.render('search', {data: []]});
+    res.render('search', {data: []});
     return
   }
 
